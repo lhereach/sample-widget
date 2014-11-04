@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Numeric TextBox</title>
+
+    <link href="css/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/kendo.moonlight.min.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/kendo.web.min.js" type="text/javascript"></script>
+    <script src="js/console.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#testscore').kendoNumericTextBox({
+				value: 50,
+				min: 0,
+				max: 100,
+				step: 0.5,
+				format: "n", //c2, p
+				decimals: 1,
+				upArrowText: "Higher",
+				downArrowText: "Lower",
+				placeholder: "Enter a test score"
+				//spinners:false
+			
+			});
+			
+			$("#interest").kendoNumericTextBox();
+			
+			var numericTextBox = $("#testscore").data("kendoNumericTextBox");
+            numericTextBox.enable(true); //false
+            alert('Here is some information about the test score: [' +
+                numericTextBox.min() + ',' + numericTextBox.max() + '] ' +
+                'Stepping by ' + numericTextBox.step() + 
+                ' and the current value is ' + numericTextBox.value());
+				
+			//fires when the value is changed
+            numericTextBox.bind("change", function (e) {
+                kendoConsole.log("The change function is called!");
+            });
+            //Fires when the value is changed from the spin buttons
+            numericTextBox.bind("spin", function (e) {
+                kendoConsole.log("The spin function is called!");
+            });
+        });
+    </script>
+</head>
+<body>
+    Select a test score:
+	<input id="testscore" />
+	<hr />
+	Select an interest rate:
+	<input id="interest" value="5" type="number" min="0.5" max="10" step="0.5"
+	placeholder="Enter an interest rate" />
+    <hr />
+    <div class="console"></div>
+    <hr />
+</body>
+</html>
