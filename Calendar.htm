@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Calendar</title>
+
+	<link href="css/kendo.common.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/kendo.metroblack.min.css" rel="stylesheet" type="text/css" />
+	
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/kendo.web.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready( function() {
+			$('#calendar').kendoCalendar({
+				//value: new Date(),
+				//min: new Date(2011, 11, 10),
+				//max: new Date(2013, 2,5)
+				//start: "century"//"decade"//"year"//"month"
+				footer: "Today: #=kendo.toString(data, 'd')#"
+			});
+			
+			var calendar = $('#calendar').data("kendoCalendar");
+			calendar.max(new Date(2013,5,5));
+			
+			var max = calendar.max();
+			$('#info').text(max);
+			
+			calendar.navigate(new Date(2013,4,4), "year");
+			
+			calendar.bind("change", function(e) {
+				alert("The change function has been called!");
+			});
+		});
+    </script>
+</head>
+<body>
+    <div id="calendar"></div>
+	<div id="info"></div>
+</body>
+</html>
