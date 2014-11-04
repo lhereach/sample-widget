@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Slider</title>
+
+    <link href="css/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/kendo.moonlight.min.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/kendo.web.min.js" type="text/javascript"></script>
+    <script src="js/console.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#slider").kendoSlider({
+				min: 1,
+				max: 25,
+				value: 10,
+				orientation: "horizontal", //"vertical"
+				smallStep: 1,
+				largeStep: 5,
+				decreaseButtonTitle: 'down',
+				increaseButtonTitle: 'up',
+				showButtons: true , //false
+				tickPlacement: 'topLeft',
+				change: sliderOnChange,
+				slide: sliderOnSlide
+			});
+			
+			var slider = $('#slider').data("kendoSlider");
+			alert("The current value is: " + slider.value());
+			
+			function sliderOnChange(e) {
+				 kendoConsole.log(
+                    "Change called with new value ==> " + e.value);
+			}
+			
+			function sliderOnSlide(e) {
+				kendoConsole.log(
+                    "Slide is called with new value ==> " + e.value);
+			}
+        });
+    </script>
+</head>
+<body>
+    <input id="slider" />
+	<hr />
+	<div class="console"></div>
+</body>
+</html>
